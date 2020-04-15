@@ -3,14 +3,18 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="bootstrap.css" />
         <title>Enter Username to Play</title>
     </head>
     <body>
         <div class="container">
-            <h1 class="header">Random Math Game</h1>
-            <p id="instruction">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus officiis esse enim dolore, quae pariatur.</p>
-            <input type="text" name="name" id="userName" placeholder="Choose a username" />
-            <a href="index.html"><button class="signUp" onclick="startBtn()">Play</button></a>
+            <h1 class="header text-center">Random Math Game</h1>
+            <p id="instruction" class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus officiis esse enim dolore, quae pariatur.</p>
+            <div class="userInput">
+                <input type="text" name="name" id="userName" placeholder="Choose a username" />
+                <a href="index.html"><button class="btn btn-primary signUp">Click Play</button></a>
+            </div>
         </div>
     </body>
     <script src="app.js"></script>

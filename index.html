@@ -4,24 +4,37 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="bootstrap.css" />
         <title>Math Game</title>
     </head>
     <body>
-        <h1 class="welcome">Welcome</h1>
+        <h1 class="welcome text-center">Welcome</h1>
         <!--create an elemnt to display a welcome msg with username inputed -->
         <div class="gameTime">Duration:</div>
-        <div class="main container">
-            <div class="btnDiv">
+        <div class="container">
+        <form name="gameForm">
+            <div class="btnDiv text-center mt-3">
                 <button class="btn btn-primary">Addition</button>
                 <button class="btn btn-primary">Subtract</button>
                 <button class="btn btn-primary">Multiplication</button>
                 <button class="btn btn-primary">Division</button>
             </div>
+            <div class="radbtn text-center">
+                <input type="radio" name="arithmetic" />Easy <input type="radio" name="arithmetic" checked />Moderate <input type="radio" name="arithmetic" />Difficult
+            </div>
 
-            <div class="quest" style="width: 500px; height: 400px; border: solid 2px teal;"></div>
+            <br />
+
+            <div class="text-center text">
+                <button type="button" value="checkScore" class="btn btn-secondary">Check Score</button>
+            <button type="reset" value="reset" class="btn btn-danger">Reset</button>
+            </div>
+        </form>
+
+        <!-- <div class="quest"></div>
             <button class="time">Previous</button>
             <button class="time">Next</button>
-        </div>
+        </div> -->
     </body>
     <script src="app.js"></script>
 </html>

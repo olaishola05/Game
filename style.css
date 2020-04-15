@@ -2,8 +2,21 @@
     text-align: center;
     border: 1px solid teal;
     height: 50px;
-    width: 200px;
+    width: 250px;
     font-size: 2rem;
     margin-bottom: 10px;
     margin: 0 auto;
+}
+
+input {
+    height: 40px;
+    text-align: center;
+}
+
+.userInput {
+    margin: 0 auto;
+}
+
+.radbtn {
+    margin-top: 0;
 }
