@@ -8,9 +8,8 @@
         <title>Math Game</title>
     </head>
     <body>
-        <h1 class="welcome text-center">Welcome</h1>
         <!--create an elemnt to display a welcome msg with username inputed -->
-        <div class="gameTime">Duration:</div>
+        <div class="gameTime"></div>
         <div class="container">
         <form name="gameForm">
             <div class="btnDiv text-center mt-3">
@@ -26,15 +25,13 @@
             <br />
 
             <div class="text-center text">
-                <button type="button" value="checkScore" class="btn btn-secondary" onclick="check()">Check Score</button>
+                <button type="button" value="checkScore" class="btn btn-secondary checkScore" onclick="scoreUpdate()">Check Score</button>
             <button type="reset" value="reset" class="btn btn-danger" onclick="javascript:correct =0; wrong =0;">Reset</button>
             </div>
+            <div class="score"></div>
         </form>
 
-        <!-- <div class="quest"></div>
-            <button class="time">Previous</button>
-            <button class="time">Next</button>
-        </div> -->
+    
     </body>
     <script src="app.js"></script>
 </html>
