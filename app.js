@@ -1,74 +1,91 @@
-function start() {
-    document.getElementById("name").onclick = function () {
-        let newBtn = document.createElement("A");
-        newBtn.className = "btn btn-primary";
-        newBtn.setAttribute("href", "index.html");
-        newBtn.setAttribute("style", "href: index.html; display: block; margin: 0 auto; color: white; width: 10%");
-        newBtn.innerHTML = "Press Play";
-        document.body.appendChild(newBtn);
-        // newBtn.onclick = startTimer();
+document.addEventListener("DOMContentLoaded", function () {
+    let startBtn = document.getElementById("name");
+    if (startBtn) {
+        startBtn.addEventListener(
+            "click",
+            function () {
+                let name = prompt("Enter Username pls: ");
+                document.getElementById("outPut").innerText = `Welcome! ${name} to Random Math Game`;
+                if (name === "" || name === null) {
+                    alert("Please enter a username to start game");
+                    name = prompt("Enter Username pls: ");
+                    document.getElementById("outPut").innerText = `Welcome! ${name} to Random Math Game`;
+                }
 
-        let name = prompt("Enter Username pls: ");
-        document.getElementById("outPut").innerText = `Welcome! ${name} to Random Math Game`;
-        if (name === "" || name === null) {
-            alert("Please enter a username to start game");
-            name = prompt("Enter Username pls: ");
-            document.getElementById("outPut").innerText = `Welcome! ${name} to Random Math Game`;
-        }
-    };
+                let newBtn = document.createElement("A");
+                newBtn.className = "btn btn-primary";
+                newBtn.setAttribute("href", "index.html");
+                newBtn.setAttribute("style", "href: index.html; display: block; margin: 0 auto; color: white; width: 10%");
+                newBtn.innerHTML = "Press Play";
+                document.body.appendChild(newBtn);
 
+                if (newBtn) {
+                    newBtn.addEventListener("click", startTimer, false);
+                }
+            },
+
+            false
+        );
+    }
     let state = document.getElementById("hide");
-    state.addEventListener("click", hide, false);
-    function hide() {
-        document.getElementById("name").style.display = "block";
-        this.style.display = "none";
+    if (state) {
+        addEventListener(
+            "click",
+            function () {
+                document.getElementById("name").style.display = "block";
+                state.style.display = "none";
+            },
+            false
+        );
+    }
+});
+
+function timer(time) {
+    const minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+
+    if (seconds < 10) {
+        seconds = `0${seconds}`;
     }
 
-    function timer(time) {
-        const minutes = Math.floor(time / 60);
-        let seconds = time % 60;
-
-        if (seconds < 10) {
-            seconds = `0${seconds}`;
-        }
-
-        return `${minutes}:${seconds}`;
-    }
-
-    const TIME_LIMIT = 120;
-
-    let timeUsed = 0;
-    let remainingTime = TIME_LIMIT;
-
-    //resetting countdown
-    function timesUp() {
-        clearInterval(timeInterval);
-    }
-
-    // setting the countdown
-
-    let timeInterval = null;
-
-    function startTimer() {
-        timeInterval = setInterval(() => {
-            timeUsed = timeUsed + 1;
-            remainingTime = TIME_LIMIT - timeUsed;
-
-            let display = document.querySelector("#gameTime");
-            display.innerText = "Duration: " + timer(remainingTime);
-            if (remainingTime === 60) {
-                alert("You have 1mins left, click OK to continue");
-                // display.style.color = "red";
-            }
-            if (remainingTime === 0) {
-                alert("Your Time is Up");
-                timesUp();
-            }
-        }, 1000);
-    }
-
-    startTimer();
+    return `${minutes}:${seconds}`;
 }
+
+const TIME_LIMIT = 300;
+
+let timeUsed = 0;
+let remainingTime = TIME_LIMIT;
+
+//resetting countdown
+function timesUp() {
+    clearInterval(timeInterval);
+}
+
+//countdown
+
+let timeInterval = null;
+
+function startTimer() {
+    timeInterval = setInterval(() => {
+        timeUsed = timeUsed + 1;
+        remainingTime = TIME_LIMIT - timeUsed;
+
+        let display = document.querySelector("#gameTime");
+        if (display) {
+            display.innerText = "Duration: " + timer(remainingTime);
+        }
+        if (remainingTime === 60) {
+            alert("You have 1mins left, click OK to continue");
+            // display.style.color = "red";
+        }
+        if (remainingTime === 0) {
+            alert("Your Time is Up");
+            timesUp();
+        }
+    }, 1000);
+}
+startTimer();
+
 let correct = 0;
 let wrong = 0;
 let res;
@@ -91,22 +108,21 @@ function random(maxValue) {
     let mil = day.getTime();
     return `${mil % maxValue}`;
 }
-
-// function addition() {
-//     if (document.gameForm.arithmetic[0].checked) maxValue = 10;
-//     else {
-//         if (document.gameForm.arithmetic[1].checked) maxValue = 30;
-//         else {
-//             maxValue = 60;
-//         }
-//     }
-//     let numA = randValue(maxValue);
-//     let numB = random(maxValue);
-//     res = `${numA}` + `${numB}`;
-//     alert(res);
-//     result = prompt(`${numA}` + "+" + `${numB}` + " = ", "");
-//     answer();
-// }
+function addition() {
+    if (document.gameForm.arithmetic[0].checked) maxValue = 10;
+    else {
+        if (document.gameForm.arithmetic[1].checked) maxValue = 30;
+        else {
+            maxValue = 60;
+        }
+    }
+    let numA = randValue(maxValue);
+    let numB = random(maxValue);
+    res = `${numA}` + `${numB}`;
+    alert(res);
+    result = prompt(`${numA}` + "+" + `${numB}` + " = ", "");
+    answer();
+}
 
 function subtract() {
     if (document.gameForm.arithmetic[0].checked) maxValue = 10;
@@ -160,9 +176,11 @@ function multiply() {
 function answer() {
     if (result == res) {
         correct++;
+        remainingTime;
         msg = "Congrats, your answer is correct";
     } else {
         wrong++;
+        remainingTime;
         msg = "sorry " + result + " is incorrect.\n\n" + "The correct answer was " + res + ".";
     }
     score = "" + (correct / (correct + wrong)) * 100;
@@ -170,14 +188,15 @@ function answer() {
     alert(msg + "\n\nYOUR SCORE:  " + score + "\n" + correct + " correct\n" + wrong + " incorrect");
 }
 
-function scoreUpdate() {
-    if (correct + wrong != 0) {
-        score = "" + ((correct / (correct + wrong)) * 100 + "%");
-        score = score.substring(0, 4) + "%";
-        alert("YOUR SCORE: " + score + "\n" + correct + " correct\n" + wrong + " incorrect");
-    } else {
-        alert("You have not completed any exercise yet.");
-    }
-}
-
-window.onload = start;
+// function timeUpadte() {
+//     let update = document.querySelectorAll("name");
+//     if (update) {
+//         update.addEventListener(
+//             "click",
+//             function () {
+//                 remainingTime = TIME_LIMIT - timeUsed;
+//             },
+//             false
+//         );
+//     }
+// }
