@@ -51,7 +51,7 @@ function timer(time) {
     return `${minutes}:${seconds}`;
 }
 
-const TIME_LIMIT = 300;
+const TIME_LIMIT = 60;
 
 let timeUsed = 0;
 let remainingTime = TIME_LIMIT;
@@ -74,9 +74,8 @@ function startTimer() {
         if (display) {
             display.innerText = "Duration: " + timer(remainingTime);
         }
-        if (remainingTime === 60) {
-            alert("You have 1mins left, click OK to continue");
-            // display.style.color = "red";
+        if (remainingTime === 30) {
+            alert("You have " + remainingTime + " seconds left, click OK to continue");
         }
         if (remainingTime === 0) {
             alert("Your Time is Up");
@@ -120,7 +119,7 @@ function addition() {
     let numB = random(maxValue);
     res = `${numA}` + `${numB}`;
     alert(res);
-    result = prompt(`${numA}` + "+" + `${numB}` + " = ", "");
+    result = window.prompt(`${numA}` + "+" + `${numB}` + " = ", "");
     answer();
 }
 
@@ -136,7 +135,7 @@ function subtract() {
     let numB = random(maxValue);
     res = `${numA}` - `${numB}`;
 
-    result = prompt(`${numA}` + "-" + `${numB}` + " = ", 0);
+    result = window.prompt(`${numA}` + "-" + `${numB}` + " = ", 0);
     answer();
 }
 
@@ -153,7 +152,7 @@ function divide() {
     res = `${numA}` / `${numB}`;
     res = Math.round(res);
     window.alert("Please round your answer off:\n" + ".5 or higher rounds one number up\n" + ".4 or lower rounds one number down");
-    result = prompt(numA + "/" + numB + " = ", 0);
+    result = window.prompt(numA + "/" + numB + " = ", 0);
     answer();
 }
 
@@ -168,7 +167,7 @@ function multiply() {
     let numA = randValue(maxValue);
     let numB = random(maxValue);
     res = `${numA * numB}`;
-    result = prompt(numA + "*" + numB + " = ", 0);
+    result = window.prompt(numA + "*" + numB + " = ", 0);
 
     answer();
 }
@@ -176,7 +175,6 @@ function multiply() {
 function answer() {
     if (result == res) {
         correct++;
-        remainingTime;
         msg = "Congrats, your answer is correct";
     } else {
         wrong++;
@@ -184,19 +182,17 @@ function answer() {
         msg = "sorry " + result + " is incorrect.\n\n" + "The correct answer was " + res + ".";
     }
     score = "" + (correct / (correct + wrong)) * 100;
-    // score = score.substring(0, 4) + "%";
+    score = score.substring(0, 4) + "%";
     alert(msg + "\n\nYOUR SCORE:  " + score + "\n" + correct + " correct\n" + wrong + " incorrect");
 }
 
 // function timeUpadte() {
-//     let update = document.querySelectorAll("name");
-//     if (update) {
-//         update.addEventListener(
-//             "click",
-//             function () {
-//                 remainingTime = TIME_LIMIT - timeUsed;
-//             },
-//             false
-//         );
-//     }
+//     let mathBtn = document.querySelectorAll(".artMetic");
+//     mathBtn.forEach((btn) => {
+//         btn.addEventListener("click", timer);
+//     });
 // }
+
+/**
+ * if the timer ends alert or display result or use the checkbtn to check scores
+ */
